@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import {
     View,
@@ -16,7 +15,6 @@ import {
 import { useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { register } from "@/services/authService";
 import { uploadImageToCloudinary } from "@/services/cloudinaryService"; // import cloudinary function
 
 const Register = () => {
@@ -87,7 +85,7 @@ const Register = () => {
             );
 
             Alert.alert("Success", "Account created successfully!", [
-                { text: "OK", onPress: () => router.push("/(auth)/login") },
+                { text: "OK", onPress: () => router.push("..//(auth)/LoginScreen") },
             ]);
         } catch (err: any) {
             console.error("Registration error:", err);
@@ -187,7 +185,7 @@ const Register = () => {
                     )}
                 </TouchableOpacity>
 
-                <TouchableOpacity onPress={() => router.push("/(auth)/login")} style={styles.loginLink}>
+                <TouchableOpacity onPress={() => router.push("..//(auth)/LoginScreen")} style={styles.loginLink}>
                     <Text style={styles.loginText}>
                         Already have an account? <Text style={styles.loginTextBold}>Sign In</Text>
                     </Text>
