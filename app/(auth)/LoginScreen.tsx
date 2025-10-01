@@ -236,7 +236,7 @@ const LoginScreen = () => {
 
                 {/* Register Link */}
                 <View style={styles.registerContainer}>
-                    <Pressable onPress={() => router.push("/register")}>
+                    <Pressable onPress={() => router.push("/(auth)/RegisterScreen")}>
                         <Text style={styles.registerText}>
                             Don't have an account?{" "}
                             <Text style={styles.registerLink}>Sign Up</Text>

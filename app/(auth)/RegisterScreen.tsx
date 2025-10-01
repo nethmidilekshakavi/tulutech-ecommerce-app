@@ -15,7 +15,8 @@ import {
 import { useRouter } from "expo-router";
 import * as ImagePicker from "expo-image-picker";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import { uploadImageToCloudinary } from "@/services/cloudinaryService"; // import cloudinary function
+import { uploadImageToCloudinary } from "@/services/cloudinaryService";
+import {register} from "@/services/authService";
 
 const Register = () => {
     const router = useRouter();
