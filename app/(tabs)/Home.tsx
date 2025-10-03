@@ -45,7 +45,7 @@ const HomeScreen = () => {
     // Fetch user details from Firebase
     useEffect(() => {
         const auth = getAuth();
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) =>  {
             if (user) {
                 const userRef = doc(db, "users", user.uid);
                 getDoc(userRef)
@@ -114,7 +114,7 @@ const HomeScreen = () => {
         <View>
             <View style={styles.header}>
                 <View style={styles.headerTop}>
-                    <Text style={styles.location}>📍 Colombo, Sri Lanka</Text>
+                    <Text style={styles.location}></Text>
                     <TouchableOpacity style={styles.notificationBtn}>
                         <Text style={styles.notificationIcon}>🔔</Text>
                     </TouchableOpacity>
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     listContent: { paddingBottom: 20 },
     header: {
         backgroundColor: '#FF6B35',
-        paddingTop: 50,
+        paddingTop: 30,
         paddingBottom: 25,
         paddingHorizontal: 20,
         borderBottomLeftRadius: 25,
