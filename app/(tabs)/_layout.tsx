@@ -1,14 +1,14 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import { AntDesign } from '@expo/vector-icons';
 
-function TabLayout() {
+export default function TabLayout() {
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: '#4CAF50',
+                tabBarActiveTintColor: '#FF6B35',
                 tabBarInactiveTintColor: 'gray',
             }}
         >
@@ -21,23 +21,12 @@ function TabLayout() {
                     ),
                 }}
             />
-
-
             <Tabs.Screen
-                name="Favorites"
+                name="ProductDetailsScreen"
                 options={{
-                    title: "Favorites",
+                    title: 'Products',
                     tabBarIcon: ({ color, size }) => (
                         <AntDesign name="heart" size={size} color={color} />
-                    ),
-                }}
-            />
-            <Tabs.Screen
-                name="Restaurant"
-                options={{
-                    title: "Restaurant",
-                    tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="restaurant" size={size} color={color} />
                     ),
                 }}
             />
@@ -53,5 +42,3 @@ function TabLayout() {
         </Tabs>
     );
 }
-
-export default TabLayout;

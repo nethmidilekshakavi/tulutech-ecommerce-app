@@ -10,17 +10,12 @@ import {
     StyleSheet,
     ImageBackground,
 } from "react-native";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useRouter } from "expo-router";
-import { login } from "@/services/authService"; // Make sure login function returns user.uid
+import { login } from "@/services/authService";
 import { getDoc, doc } from "firebase/firestore";
 import { db, auth } from "@/config/firebaseConfig";
-import {
-    onAuthStateChanged,
-    setPersistence,
-    browserLocalPersistence,
-    browserSessionPersistence,
-} from "firebase/auth";
+
 
 const LoginScreen = () => {
     const router = useRouter();
@@ -195,14 +190,14 @@ const styles = StyleSheet.create({
     optionsRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", marginBottom: 24 },
     rememberMeContainer: { flexDirection: "row", alignItems: "center" },
     checkbox: { width: 22, height: 22, borderRadius: 6, borderWidth: 2, borderColor: "#D1D5DB", backgroundColor: "#FFFFFF", marginRight: 8, justifyContent: "center", alignItems: "center" },
-    checkboxChecked: { backgroundColor: "#FF9800", borderColor: "#FF9800" },
+    checkboxChecked: { backgroundColor: "#FF6B35", borderColor: "#FF6B35" },
     checkmark: { color: "#FFFFFF", fontSize: 14, fontWeight: "bold" },
     rememberText: { fontSize: 14, color: "#374151", fontWeight: "500" },
-    loginButton: { backgroundColor: "#FF9800", paddingVertical: 16, borderRadius: 16, alignItems: "center", marginBottom: 24 },
+    loginButton: { backgroundColor: "#FF6B35", paddingVertical: 16, borderRadius: 16, alignItems: "center", marginBottom: 24 },
     loginButtonText: { color: "#FFFFFF", fontSize: 17, fontWeight: "bold" },
     registerContainer: { alignItems: "center", paddingVertical: 16 },
     registerText: { fontSize: 15, color: "#6B7280" },
-    registerLink: { color: "#FF9800", fontWeight: "bold" },
+    registerLink: { color: "#FF6B35", fontWeight: "bold" },
 });
 
 export default LoginScreen;
