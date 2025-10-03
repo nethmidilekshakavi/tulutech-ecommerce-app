@@ -22,11 +22,20 @@ export default function TabLayout() {
                 }}
             />
             <Tabs.Screen
-                name="ProductDetailsScreen"
+                name="Product"
                 options={{
                     title: 'Products',
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign name="heart" size={size} color={color} />
+                        <AntDesign name="appstore1" size={size} color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="CartScreen"
+                options={{
+                    title: 'Cart',
+                    tabBarIcon: ({ color, size }) => (
+                        <AntDesign name="shoppingcart" size={size} color={color} />
                     ),
                 }}
             />

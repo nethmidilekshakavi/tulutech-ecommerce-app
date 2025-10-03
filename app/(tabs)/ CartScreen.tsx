@@ -1,3 +1,4 @@
+// screens/CartScreen.tsx
 import React, { useContext } from "react";
 import {
     View,
@@ -10,14 +11,14 @@ import {
     Animated,
     Alert
 } from "react-native";
-import { CartContext } from "@/context/CartContext";
+import { CartContext, CartItem } from "@/context/CartContext";
 import { Ionicons } from "@expo/vector-icons";
 
 const CartScreen = () => {
     // @ts-ignore
     const { cart, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
 
-    const renderItem = ({ item, index }: any) => (
+    const renderItem = ({ item }: { item: CartItem }) => (
         <Animated.View
             style={[
                 styles.card,
@@ -83,7 +84,7 @@ const CartScreen = () => {
         </Animated.View>
     );
 
-    const total = cart.reduce((sum: number, item: { price: number; quantity: number; }) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce((sum: number, item: CartItem) => sum + item.price * item.quantity, 0);
     const shipping = total > 50 ? 0 : 9.99;
     const finalTotal = total + shipping;
 
@@ -93,20 +94,38 @@ const CartScreen = () => {
             `Proceed to pay $${finalTotal.toFixed(2)}?`,
             [
                 { text: "Cancel", style: "cancel" },
-                { text: "Confirm", onPress: () => alert("Order placed successfully! 🎉") }
+                { text: "Confirm", onPress: () => {
+                        Alert.alert("Success", "Order placed successfully! 🎉");
+                        clearCart();
+                    }}
             ]
         );
     };
 
     const handleClearCart = () => {
+        if (cart.length === 0) {
+            Alert.alert("Cart Empty", "Your cart is already empty!");
+            return;
+        }
+
         Alert.alert(
             "Clear Cart",
-            "Are you sure you want to remove all items?",
+            "Are you sure you want to remove all items from your cart?",
             [
                 { text: "Cancel", style: "cancel" },
-                { text: "Clear", onPress: () => clearCart(), style: "destructive" }
+                {
+                    text: "Clear All",
+                    onPress: () => clearCart(),
+                    style: "destructive"
+                }
             ]
         );
+    };
+
+    const handleShopNow = () => {
+        // Navigate to your products screen
+        // navigation.navigate('Products');
+        Alert.alert("Shop Now", "Navigate to products screen");
     };
 
     return (
@@ -114,7 +133,7 @@ const CartScreen = () => {
             {/* Header */}
             <View style={styles.header}>
                 <Text style={styles.headerTitle}>Shopping Cart</Text>
-                <Text style={styles.itemCount}>({cart.length} items)</Text>
+                <Text style={styles.itemCount}>({cart.length} {cart.length === 1 ? 'item' : 'items'})</Text>
             </View>
 
             {cart.length === 0 ? (
@@ -122,7 +141,7 @@ const CartScreen = () => {
                     <Ionicons name="cart-outline" size={80} color="#DDD" />
                     <Text style={styles.emptyTitle}>Your cart is empty</Text>
                     <Text style={styles.emptySubtitle}>Add some items to get started</Text>
-                    <TouchableOpacity style={styles.shopNowBtn}>
+                    <TouchableOpacity style={styles.shopNowBtn} onPress={handleShopNow}>
                         <Text style={styles.shopNowText}>Shop Now</Text>
                     </TouchableOpacity>
                 </View>
