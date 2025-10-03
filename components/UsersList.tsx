@@ -1,4 +1,4 @@
-// app/users.tsx
+
 import React, { useEffect, useState } from "react";
 import {
     View,
@@ -72,6 +72,7 @@ const UsersList = () => {
         const unsubscribe = onSnapshot(
             q,
             (snapshot) => {
+
                 const usersList: UserDoc[] = snapshot.docs.map((doc) => ({
                     uid: doc.id,
                     ...(doc.data() as UserDoc),

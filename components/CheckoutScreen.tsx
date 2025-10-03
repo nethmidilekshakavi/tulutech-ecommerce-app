@@ -17,6 +17,7 @@ import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
 const CartCheckoutScreen = () => {
+    // @ts-ignore
     const { cart, removeFromCart, updateQuantity, setCart } = useContext(CartContext);
     const { initPaymentSheet, presentPaymentSheet } = useStripe();
     const router = useRouter();
@@ -53,7 +54,6 @@ const CartCheckoutScreen = () => {
 
             if (error) {
                 Alert.alert("Setup Error", error.message);
-                setLoading(false);
                 return;
             }
 
@@ -65,9 +65,9 @@ const CartCheckoutScreen = () => {
                     sheetError.message
                 );
             } else {
-                Alert.alert("Success", "Payment completed successfully!", [
-                    { text: "OK", onPress: () => { setCart([]); router.replace("/success"); } }
-                ]);
+                // ✅ Payment successful
+                setCart([]);
+                router.replace("./components/SuccessScreen.tsx");
             }
         } catch (err: any) {
             Alert.alert("Error", err.message || "Something went wrong");

@@ -13,6 +13,7 @@ interface Product {
 }
 
 const ProductDetailsScreen = () => {
+    // @ts-ignore
     const { addToCart } = useContext(CartContext);
     const router = useRouter();
     const params = useLocalSearchParams();

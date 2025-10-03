@@ -1,25 +1,29 @@
-// context/CartContext.tsx
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Product } from "../types";
+
+export type Product = {
+    id: number;
+    title: string;
+    price: number;
+    thumbnail: string;
+    quantity?: number;
+};
 
 type CartContextType = {
     cart: Product[];
     addToCart: (product: Product) => void;
     removeFromCart: (id: number) => void;
     updateQuantity: (id: number, quantity: number) => void;
+    setCart: (products: Product[]) => void;
 };
 
 export const CartContext = createContext<CartContextType | null>(null);
 
-type Props = {
-    children: ReactNode;
-};
+type Props = { children: ReactNode };
 
 export const CartProvider = ({ children }: Props) => {
     const [cart, setCart] = useState<Product[]>([]);
 
-    // Load cart on app start
     useEffect(() => {
         const loadCart = async () => {
             try {
@@ -32,7 +36,6 @@ export const CartProvider = ({ children }: Props) => {
         loadCart();
     }, []);
 
-    // Save cart whenever it changes
     useEffect(() => {
         const saveCart = async () => {
             try {
@@ -47,32 +50,19 @@ export const CartProvider = ({ children }: Props) => {
     const addToCart = (product: Product) => {
         const existing = cart.find((item) => item.id === product.id);
         if (existing) {
-            setCart(
-                cart.map((item) =>
-                    item.id === product.id
-                        ? { ...item, quantity: item.quantity + 1 }
-                        : item
-                )
-            );
+            setCart(cart.map((item) => item.id === product.id ? { ...item, quantity: item.quantity! + 1 } : item));
         } else {
             setCart([...cart, { ...product, quantity: 1 }]);
         }
     };
 
-    const removeFromCart = (id: number) => {
-        setCart(cart.filter((item) => item.id !== id));
-    };
+    const removeFromCart = (id: number) => setCart(cart.filter((item) => item.id !== id));
 
-    const updateQuantity = (id: number, quantity: number) => {
-        setCart(
-            cart.map((item) =>
-                item.id === id ? { ...item, quantity } : item
-            )
-        );
-    };
+    const updateQuantity = (id: number, quantity: number) =>
+        setCart(cart.map((item) => item.id === id ? { ...item, quantity } : item));
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, updateQuantity, setCart }}>
             {children}
         </CartContext.Provider>
     );

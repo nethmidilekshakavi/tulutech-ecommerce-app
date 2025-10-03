@@ -14,6 +14,7 @@ import { CartContext } from "@/context/CartContext";
 import { Ionicons } from "@expo/vector-icons";
 
 const CartScreen = () => {
+    // @ts-ignore
     const { cart, removeFromCart, updateQuantity, clearCart } = useContext(CartContext);
 
     const renderItem = ({ item, index }: any) => (
@@ -82,7 +83,7 @@ const CartScreen = () => {
         </Animated.View>
     );
 
-    const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+    const total = cart.reduce((sum: number, item: { price: number; quantity: number; }) => sum + item.price * item.quantity, 0);
     const shipping = total > 50 ? 0 : 9.99;
     const finalTotal = total + shipping;
 

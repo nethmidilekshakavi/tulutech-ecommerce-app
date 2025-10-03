@@ -31,6 +31,7 @@ const HomeScreen = () => {
     const [userLoading, setUserLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState("");
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+    // @ts-ignore
     const { addToCart } = useContext(CartContext);
 
     // Categories with emojis - matching API categories
@@ -51,6 +52,7 @@ const HomeScreen = () => {
                 getDoc(userRef)
                     .then((snapshot) => {
                         if (snapshot.exists()) {
+                            // @ts-ignore
                             setCurrentUser({ uid: snapshot.id, ...(snapshot.data() as UserDoc) });
                         }
                     })
