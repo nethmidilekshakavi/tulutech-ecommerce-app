@@ -15,78 +15,52 @@ const CheckoutScreen = () => {
 
     const fetchPaymentSheetParams = async () => {
         try {
-            console.log("Fetching payment intent for amount:", total);
-
             const res = await fetch("http://192.168.65.236:3000/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: total }),
+                body: JSON.stringify({ amount: total }), // Use cart total
             });
 
-            const data = await res.json();
-
             if (!res.ok) {
-                throw new Error(data.error || "Failed to create payment intent");
+                throw new Error("Failed to create payment intent");
             }
 
-            if (!data.clientSecret) {
-                throw new Error("No client secret received");
-            }
-
-            console.log("Payment intent created successfully");
-            return data.clientSecret;
+            const { clientSecret } = await res.json();
+            return clientSecret;
         } catch (error) {
-            console.error("Error fetching payment params:", error);
             throw error;
         }
     };
 
     const openPaymentSheet = async () => {
-        if (cart.length === 0 || total <= 0) {
-            Alert.alert("Error", "Cart is empty or total is invalid");
-            return;
-        }
-
         setLoading(true);
 
         try {
-            console.log("Starting payment process...");
             const clientSecret = await fetchPaymentSheetParams();
 
-            console.log("Initializing payment sheet...");
             const { error } = await initPaymentSheet({
                 paymentIntentClientSecret: clientSecret,
                 merchantDisplayName: "My Shop",
                 style: "automatic",
-                returnURL: "myapp://checkout",
             });
 
             if (error) {
-                console.error("Init payment sheet error:", error);
-                Alert.alert("Setup Error", error.message);
+                Alert.alert("Error", error.message);
                 setLoading(false);
                 return;
             }
 
-            console.log("Presenting payment sheet...");
             const { error: sheetError } = await presentPaymentSheet();
 
             if (sheetError) {
                 // Payment failed or was cancelled
-                console.log("Payment sheet error:", sheetError);
-
-                if (sheetError.code === "Canceled") {
-                    Alert.alert("Payment Cancelled", "You cancelled the payment");
-                } else {
-                    Alert.alert(
-                        "Payment Failed",
-                        sheetError.message,
-                        [{ text: "OK" }]
-                    );
-                }
+                Alert.alert(
+                    "Payment Failed",
+                    sheetError.message,
+                    [{ text: "OK" }]
+                );
             } else {
                 // Payment successful
-                console.log("Payment successful!");
                 Alert.alert(
                     "Success",
                     "Payment completed successfully!",
@@ -103,8 +77,7 @@ const CheckoutScreen = () => {
                 );
             }
         } catch (error: any) {
-            console.error("Payment error:", error);
-            Alert.alert("Error", error.message || "Something went wrong. Please try again.");
+            Alert.alert("Error", error.message || "Something went wrong");
         } finally {
             setLoading(false);
         }

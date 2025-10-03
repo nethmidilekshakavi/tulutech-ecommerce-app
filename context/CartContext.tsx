@@ -1,7 +1,15 @@
 import React, { createContext, useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const CartContext = createContext<any>(null);
+interface CartContextType {
+    cart: any[];
+    addToCart: (product: any) => void;
+    removeFromCart: (productId: number) => void;
+    updateQuantity: (productId: number, quantity: number) => void;
+    setCart: (cart: any[]) => void;
+}
+
+export const CartContext = createContext<CartContextType | null>(null);
 
 export const CartProvider = ({ children }: any) => {
     const [cart, setCart] = useState<any[]>([]);
@@ -38,6 +46,7 @@ export const CartProvider = ({ children }: any) => {
     };
 
     const updateQuantity = (productId: number, quantity: number) => {
+        if (quantity < 1) return; // Prevent quantity less than 1
         setCart(
             cart.map((item) =>
                 item.id === productId ? { ...item, quantity } : item
@@ -47,7 +56,7 @@ export const CartProvider = ({ children }: any) => {
 
     return (
         <CartContext.Provider
-            value={{ cart, addToCart, removeFromCart, updateQuantity }}
+            value={{ cart, addToCart, removeFromCart, updateQuantity, setCart }}
         >
             {children}
         </CartContext.Provider>
