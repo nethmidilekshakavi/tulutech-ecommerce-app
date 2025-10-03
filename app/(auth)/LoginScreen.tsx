@@ -54,7 +54,7 @@ const LoginScreen = () => {
             <View style={styles.heroSection}>
                 <ImageBackground
                     source={{
-                        uri: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=800",
+                        uri: "https://i.pinimg.com/1200x/29/aa/cb/29aacb18060c111859fd0d813def1d9d.jpg",
                     }}
                     style={styles.imageBackground}
                     imageStyle={styles.imageStyle}
@@ -75,10 +75,10 @@ const LoginScreen = () => {
                     </View>
 
                     <View style={styles.logoContainer}>
-                        <View style={styles.logoBox}>
-                            <Text style={styles.logoEmoji}>🛍️</Text>
-                        </View>
-                        <Text style={styles.brandTitle}>ShopNow</Text>
+                        {/*<View style={styles.logoBox}>*/}
+                        {/*    <Text style={styles.logoEmoji}>🛍️</Text>*/}
+                        {/*</View>*/}
+                        <Text style={styles.brandTitle}>Endless Choices, One App</Text>
                         <Text style={styles.brandSubtitle}>Your Shopping Paradise</Text>
                     </View>
 
@@ -178,10 +178,10 @@ const styles = StyleSheet.create({
     brandSubtitle: { fontSize: 16, color: "#FFFFFF", opacity: 0.95 },
     curvedBottom: { position: "absolute", bottom: 0, left: 0, right: 0, height: 40, backgroundColor: "#FFFFFF", borderTopLeftRadius: 30, borderTopRightRadius: 30 },
     formSection: { paddingHorizontal: 24, paddingBottom: 30 },
-    welcomeContainer: { marginBottom: 30, marginTop: 10 },
+    welcomeContainer: { marginBottom: 30, marginTop: 10,bottom:20 },
     welcomeTitle: { fontSize: 28, fontWeight: "bold", color: "#1F2937", marginBottom: 8 },
     welcomeSubtitle: { fontSize: 15, color: "#6B7280" },
-    inputContainer: { marginBottom: 20 },
+    inputContainer: { marginBottom: 20 ,bottom:30},
     inputLabel: { fontSize: 14, fontWeight: "600", color: "#374151", marginBottom: 8, marginLeft: 4 },
     inputWrapper: { flexDirection: "row", alignItems: "center", backgroundColor: "#F9FAFB", borderRadius: 16, borderWidth: 1.5, borderColor: "#E5E7EB", paddingHorizontal: 16 },
     iconContainer: { marginRight: 12 },
@@ -189,14 +189,14 @@ const styles = StyleSheet.create({
     textInput: { flex: 1, color: "#1F2937", fontSize: 15, paddingVertical: 14 },
     optionsRow: { flexDirection: "row", justifyContent: "flex-start", alignItems: "center", marginBottom: 24 },
     rememberMeContainer: { flexDirection: "row", alignItems: "center" },
-    checkbox: { width: 22, height: 22, borderRadius: 6, borderWidth: 2, borderColor: "#D1D5DB", backgroundColor: "#FFFFFF", marginRight: 8, justifyContent: "center", alignItems: "center" },
+    checkbox: { width: 22,bottom:30, height: 22, borderRadius: 6, borderWidth: 2, borderColor: "#D1D5DB", backgroundColor: "#FFFFFF", marginRight: 8, justifyContent: "center", alignItems: "center" },
     checkboxChecked: { backgroundColor: "#FF6B35", borderColor: "#FF6B35" },
     checkmark: { color: "#FFFFFF", fontSize: 14, fontWeight: "bold" },
-    rememberText: { fontSize: 14, color: "#374151", fontWeight: "500" },
-    loginButton: { backgroundColor: "#FF6B35", paddingVertical: 16, borderRadius: 16, alignItems: "center", marginBottom: 24 },
+    rememberText: { fontSize: 14, color: "#374151", fontWeight: "500",bottom:30 },
+    loginButton: { backgroundColor: "#FF6B35",bottom:10, paddingVertical: 16, borderRadius: 16, alignItems: "center", marginBottom: 24 },
     loginButtonText: { color: "#FFFFFF", fontSize: 17, fontWeight: "bold" },
     registerContainer: { alignItems: "center", paddingVertical: 16 },
-    registerText: { fontSize: 15, color: "#6B7280" },
+    registerText: { fontSize: 15, color: "#6B7280",bottom:10 },
     registerLink: { color: "#FF6B35", fontWeight: "bold" },
 });
 
