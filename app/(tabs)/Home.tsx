@@ -119,7 +119,6 @@ const HomeScreen = () => {
                 />
             </View>
 
-            {/* Categories */}
 
         </View>
     );

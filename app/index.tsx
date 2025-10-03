@@ -36,7 +36,7 @@ export default function Index() {
             <View style={styles.imageCircle}>
               <Image
                   source={{
-                    uri: 'https://i.pinimg.com/736x/f3/62/07/f362072dab9df2e53df6134fa9eec64a.jpg',
+                    uri: 'https://i.pinimg.com/736x/09/8c/68/098c68ef387f3f3950f5b40183468656.jpg',
                   }}
                   style={styles.characterImage}
                   resizeMode="cover"
@@ -70,7 +70,7 @@ export default function Index() {
             </TouchableOpacity>
 
             {/* Bottom Indicator */}
-            <View style={styles.bottomIndicator} />
+            {/*<View style={styles.bottomIndicator} />*/}
           </View>
         </View>
       </View>
@@ -121,6 +121,7 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   card: {
+    top:60,
     flex: 1,
     backgroundColor: 'white',
     borderTopLeftRadius: 30,
@@ -152,6 +153,7 @@ const styles = StyleSheet.create({
     width: 24,
   },
   title: {
+    bottom:80,
     fontSize: 24,
     fontWeight: 'bold',
     color: '#2C3E50',
@@ -160,6 +162,7 @@ const styles = StyleSheet.create({
     lineHeight: 32,
   },
   description: {
+    bottom:80,
     fontSize: 14,
     color: '#7A8A99',
     textAlign: 'center',
@@ -167,6 +170,7 @@ const styles = StyleSheet.create({
     marginBottom: 30,
   },
   button: {
+    bottom:80,
     backgroundColor: '#FF6B35',
     paddingVertical: 18,
     borderRadius: 30,
