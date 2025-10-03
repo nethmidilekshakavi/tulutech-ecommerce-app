@@ -86,7 +86,7 @@ const Register = () => {
             );
 
             Alert.alert("Success", "Account created successfully!", [
-                { text: "OK", onPress: () => router.push("..//(auth)/LoginScreen") },
+                { text: "OK", onPress: () => router.push("/(auth)/LoginScreen") },
             ]);
         } catch (err: any) {
             console.error("Registration error:", err);
@@ -103,10 +103,10 @@ const Register = () => {
             <ScrollView contentContainerStyle={styles.scrollContainer} showsVerticalScrollIndicator={false}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-                        <Icon name="arrow-back" size={24} color="#4CAF50" />
+                        <Icon name="arrow-back" size={24} color="#FF6B35" />
                     </TouchableOpacity>
                     <Text style={styles.title}>Create Account</Text>
-                    <Text style={styles.subtitle}>Join TasteLanka today!</Text>
+                    <Text style={styles.subtitle}>Join LumaStore today! 🛒</Text>
                 </View>
 
                 <View style={styles.profileSection}>
@@ -120,7 +120,7 @@ const Register = () => {
                             </View>
                         ) : (
                             <View style={styles.placeholderContainer}>
-                                <Icon name="add-a-photo" size={40} color="#9CA3AF" />
+                                <Icon name="add-a-photo" size={40} color="#FF6B35" />
                                 <Text style={styles.placeholderText}>Add Photo</Text>
                             </View>
                         )}
@@ -133,41 +133,50 @@ const Register = () => {
                 <View style={styles.formContainer}>
                     <View style={styles.inputGroup}>
                         <Text style={styles.inputLabel}>Full Name *</Text>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Enter your full name"
-                            placeholderTextColor="#9CA3AF"
-                            value={fullName}
-                            onChangeText={setFullName}
-                            autoCapitalize="words"
-                        />
+                        <View style={styles.inputWrapper}>
+                            <Icon name="person-outline" size={20} color="#9CA3AF" style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Enter your full name"
+                                placeholderTextColor="#9CA3AF"
+                                value={fullName}
+                                onChangeText={setFullName}
+                                autoCapitalize="words"
+                            />
+                        </View>
                     </View>
 
                     <View style={styles.inputGroup}>
                         <Text style={styles.inputLabel}>Email Address *</Text>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Enter your email"
-                            placeholderTextColor="#9CA3AF"
-                            value={email}
-                            onChangeText={setEmail}
-                            keyboardType="email-address"
-                            autoCapitalize="none"
-                            autoCorrect={false}
-                        />
+                        <View style={styles.inputWrapper}>
+                            <Icon name="email-outlined" size={20} color="#9CA3AF" style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Enter your email"
+                                placeholderTextColor="#9CA3AF"
+                                value={email}
+                                onChangeText={setEmail}
+                                keyboardType="email-address"
+                                autoCapitalize="none"
+                                autoCorrect={false}
+                            />
+                        </View>
                     </View>
 
                     <View style={styles.inputGroup}>
                         <Text style={styles.inputLabel}>Password *</Text>
-                        <TextInput
-                            style={styles.textInput}
-                            placeholder="Enter your password (min 6 characters)"
-                            placeholderTextColor="#9CA3AF"
-                            secureTextEntry
-                            value={password}
-                            onChangeText={setPassword}
-                            autoCapitalize="none"
-                        />
+                        <View style={styles.inputWrapper}>
+                            <Icon name="lock-outline" size={20} color="#9CA3AF" style={styles.inputIcon} />
+                            <TextInput
+                                style={styles.textInput}
+                                placeholder="Enter your password (min 6 characters)"
+                                placeholderTextColor="#9CA3AF"
+                                secureTextEntry
+                                value={password}
+                                onChangeText={setPassword}
+                                autoCapitalize="none"
+                            />
+                        </View>
                     </View>
                 </View>
 
@@ -197,31 +206,158 @@ const Register = () => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1, backgroundColor: "#F8FAFC", top: 50 },
-    scrollContainer: { flexGrow: 1, paddingHorizontal: 20, paddingBottom: 30 },
-    header: { alignItems: "center", paddingTop: 20, paddingBottom: 30 },
-    backButton: { position: "absolute", left: 0, top: 20, padding: 10 },
-    title: { fontSize: 28, fontWeight: "bold", color: "#1F2937", marginBottom: 8 },
-    subtitle: { fontSize: 16, color: "#6B7280" },
-    profileSection: { alignItems: "center", marginBottom: 30 },
-    imageContainer: { width: 120, height: 120, borderRadius: 60, overflow: "hidden", marginBottom: 12 },
-    imageWrapper: { width: "100%", height: "100%", position: "relative" },
-    profileImage: { width: "100%", height: "100%" },
-    removeButton: { position: "absolute", top: 8, right: 8, backgroundColor: "#EF4444", borderRadius: 12, width: 24, height: 24, justifyContent: "center", alignItems: "center" },
-    placeholderContainer: { width: "100%", height: "100%", backgroundColor: "#F3F4F6", justifyContent: "center", alignItems: "center", borderWidth: 2, borderColor: "#E5E7EB", borderStyle: "dashed" },
-    placeholderText: { color: "#9CA3AF", fontSize: 14, marginTop: 8 },
-    imageHint: { color: "#6B7280", fontSize: 12, textAlign: "center" },
-    formContainer: { marginBottom: 30 },
-    inputGroup: { marginBottom: 20 },
-    inputLabel: { fontSize: 14, fontWeight: "600", color: "#374151", marginBottom: 8 },
-    textInput: { backgroundColor: "#fff", borderWidth: 1, borderColor: "#D1D5DB", borderRadius: 12, paddingHorizontal: 16, paddingVertical: 14, fontSize: 16, color: "#1F2937" },
-    registerButton: { backgroundColor: "#4CAF50", paddingVertical: 16, borderRadius: 12, marginBottom: 20, shadowColor: "#4CAF50", shadowOffset: { width: 0, height: 4 }, shadowOpacity: 0.3, shadowRadius: 8, elevation: 8 },
-    disabledButton: { opacity: 0.7 },
-    loadingContainer: { flexDirection: "row", justifyContent: "center", alignItems: "center" },
-    buttonText: { color: "#fff", fontSize: 18, fontWeight: "bold", textAlign: "center", marginLeft: 8 },
-    loginLink: { alignItems: "center" },
-    loginText: { color: "#6B7280", fontSize: 16 },
-    loginTextBold: { color: "#4CAF50", fontWeight: "600" },
+    container: {
+        flex: 1,
+        backgroundColor: "white",
+        top: 50
+    },
+    scrollContainer: {
+        flexGrow: 1,
+        paddingHorizontal: 20,
+        paddingBottom: 30
+    },
+    header: {
+        alignItems: "center",
+        paddingTop: 20,
+        paddingBottom: 30
+    },
+    backButton: {
+        position: "absolute",
+        left: 0,
+        top: 20,
+        padding: 10
+    },
+    title: {
+        fontSize: 28,
+        fontWeight: "bold",
+        color: "#1F2937",
+        marginBottom: 8
+    },
+    subtitle: {
+        fontSize: 16,
+        color: "#6B7280"
+    },
+    profileSection: {
+        alignItems: "center",
+        marginBottom: 30
+    },
+    imageContainer: {
+        width: 120,
+        height: 120,
+        borderRadius: 60,
+        overflow: "hidden",
+        marginBottom: 12,
+        borderWidth: 3,
+        borderColor: "#FF6B35"
+    },
+    imageWrapper: {
+        width: "100%",
+        height: "100%",
+        position: "relative"
+    },
+    profileImage: {
+        width: "100%",
+        height: "100%"
+    },
+    removeButton: {
+        position: "absolute",
+        top: 8,
+        right: 8,
+        backgroundColor: "#EF4444",
+        borderRadius: 12,
+        width: 24,
+        height: 24,
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    placeholderContainer: {
+        width: "100%",
+        height: "100%",
+        backgroundColor: "#FFF5F0",
+        justifyContent: "center",
+        alignItems: "center",
+        borderWidth: 2,
+        borderColor: "#FFD4C2",
+        borderStyle: "dashed"
+    },
+    placeholderText: {
+        color: "#FF6B35",
+        fontSize: 14,
+        marginTop: 8,
+        fontWeight: "600"
+    },
+    imageHint: {
+        color: "#6B7280",
+        fontSize: 12,
+        textAlign: "center"
+    },
+    formContainer: {
+        marginBottom: 30
+    },
+    inputGroup: {
+        marginBottom: 20
+    },
+    inputLabel: {
+        fontSize: 14,
+        fontWeight: "600",
+        color: "#374151",
+        marginBottom: 8
+    },
+    inputWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        backgroundColor: "#fff",
+        borderWidth: 1.5,
+        borderColor: "#FFD4C2",
+        borderRadius: 12,
+        paddingHorizontal: 12,
+    },
+    inputIcon: {
+        marginRight: 8,
+    },
+    textInput: {
+        flex: 1,
+        paddingVertical: 14,
+        fontSize: 16,
+        color: "#1F2937"
+    },
+    registerButton: {
+        backgroundColor: "#FF6B35",
+        paddingVertical: 16,
+        borderRadius: 12,
+        marginBottom: 20,
+        shadowColor: "#FF6B35",
+        shadowOffset: { width: 0, height: 4 },
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 8
+    },
+    disabledButton: {
+        opacity: 0.7
+    },
+    loadingContainer: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    buttonText: {
+        color: "#fff",
+        fontSize: 18,
+        fontWeight: "bold",
+        textAlign: "center",
+        marginLeft: 8
+    },
+    loginLink: {
+        alignItems: "center"
+    },
+    loginText: {
+        color: "#6B7280",
+        fontSize: 16
+    },
+    loginTextBold: {
+        color: "#FF6B35",
+        fontWeight: "600"
+    },
 });
 
 export default Register;
