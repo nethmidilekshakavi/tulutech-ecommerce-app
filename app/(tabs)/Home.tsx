@@ -53,6 +53,7 @@ const HomeScreen = () => {
                 getDoc(userRef)
                     .then(snapshot => {
                         if (snapshot.exists()) {
+                            // @ts-ignore
                             setCurrentUser({ uid: snapshot.id, ...(snapshot.data() as UserDoc) });
                         }
                     })
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     categoryCircle: { alignItems: "center", marginRight: 15 },
     categoryEmoji: { fontSize: 28 },
     categoryName: { fontSize: 12 },
-    card: { width: "48%", backgroundColor: "#fff", borderRadius: 10, padding: 10, marginBottom: 10 },
+    card: { width: "48%", backgroundColor: "#fff", borderRadius: 10, padding: 10, marginBottom: 10 ,top:20},
     cardImage: { width: "100%", height: 120, borderRadius: 10 },
     cardTitle: { marginTop: 5, fontWeight: "600" },
     price: { color: "#FF6B35", fontWeight: "bold" },
