@@ -1,7 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { Ionicons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
+import { Ionicons,MaterialCommunityIcons  } from '@expo/vector-icons';
+
 
 export default function TabLayout() {
     return (
@@ -9,7 +9,18 @@ export default function TabLayout() {
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: '#FF6B35',
-                tabBarInactiveTintColor: 'gray',
+                tabBarInactiveTintColor: '#9CA3AF',
+                tabBarStyle: {
+                    backgroundColor: '#fff',
+                    borderTopWidth: 0,
+                    elevation: 5,
+                    height: 60,
+                    paddingBottom: 6,
+                },
+                tabBarLabelStyle: {
+                    fontSize: 12,
+                    fontWeight: '600',
+                },
             }}
         >
             <Tabs.Screen
@@ -17,7 +28,7 @@ export default function TabLayout() {
                 options={{
                     title: 'Home',
                     tabBarIcon: ({ color, size }) => (
-                        <Ionicons name="home-outline" size={size} color={color} />
+                        <Ionicons name="home" size={size} color={color} />
                     ),
                 }}
             />
@@ -26,16 +37,16 @@ export default function TabLayout() {
                 options={{
                     title: 'Products',
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign name="appstore1" size={size} color={color} />
+                        <MaterialCommunityIcons name="shopping-outline" size={size} color={color} />
                     ),
                 }}
             />
             <Tabs.Screen
-                name="CartScreen"
+                name="Cart"
                 options={{
                     title: 'Cart',
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign name="shoppingcart" size={size} color={color} />
+                        <Ionicons name="cart" size={size} color={color} />
                     ),
                 }}
             />
@@ -44,7 +55,7 @@ export default function TabLayout() {
                 options={{
                     title: 'Account',
                     tabBarIcon: ({ color, size }) => (
-                        <AntDesign name="user" size={size} color={color} />
+                        <MaterialCommunityIcons name="account-circle-outline" size={size} color={color} />
                     ),
                 }}
             />
