@@ -30,6 +30,8 @@ const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/davhloffd/image/upload";
 const UPLOAD_PRESET = "my_upload_preset";
 const DEFAULT_PROFILE_PIC = "https://via.placeholder.com/150/ccc/fff?text=User";
 
+const ORANGE = "#FF6B35";
+
 const Profile = () => {
     const [loading, setLoading] = useState(true);
     const [saving, setSaving] = useState(false);
@@ -221,7 +223,7 @@ const Profile = () => {
         return (
             <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
                 <View style={styles.loadingContainer}>
-                    <ActivityIndicator size="large" color={colors.primary} />
+                    <ActivityIndicator size="large" color={ORANGE} />
                     <Text style={[styles.loadingText, { color: colors.textSecondary }]}>
                         Loading profile...
                     </Text>
@@ -242,10 +244,10 @@ const Profile = () => {
                         <View style={styles.profileImageContainer}>
                             <Image
                                 source={{ uri: userInfo.photoURL }}
-                                style={[styles.profileImage, { borderColor: colors.border }]}
+                                style={[styles.profileImage]}
                             />
                             <TouchableOpacity
-                                style={[styles.editImageButton, { backgroundColor: colors.primary }]}
+                                style={styles.editImageButton}
                                 onPress={handlePickImage}
                             >
                                 {uploading ? (
@@ -270,14 +272,7 @@ const Profile = () => {
                             <TextInput
                                 value={fullName}
                                 onChangeText={setFullName}
-                                style={[
-                                    styles.textInput,
-                                    {
-                                        borderColor: colors.border,
-                                        backgroundColor: colors.background,
-                                        color: colors.text,
-                                    },
-                                ]}
+                                style={styles.textInput}
                                 placeholder="Enter your full name"
                                 placeholderTextColor={colors.textTertiary}
                             />
@@ -288,14 +283,7 @@ const Profile = () => {
                             <TextInput
                                 value={email}
                                 onChangeText={setEmail}
-                                style={[
-                                    styles.textInput,
-                                    {
-                                        borderColor: colors.border,
-                                        backgroundColor: colors.background,
-                                        color: colors.text,
-                                    },
-                                ]}
+                                style={styles.textInput}
                                 placeholder="Enter your email"
                                 placeholderTextColor={colors.textTertiary}
                                 keyboardType="email-address"
@@ -309,14 +297,7 @@ const Profile = () => {
                             <TextInput
                                 value={currentPassword}
                                 onChangeText={setCurrentPassword}
-                                style={[
-                                    styles.textInput,
-                                    {
-                                        borderColor: colors.border,
-                                        backgroundColor: colors.background,
-                                        color: colors.text,
-                                    },
-                                ]}
+                                style={styles.textInput}
                                 placeholder="Enter current password"
                                 placeholderTextColor={colors.textTertiary}
                                 secureTextEntry
@@ -330,14 +311,7 @@ const Profile = () => {
                             <TextInput
                                 value={newPassword}
                                 onChangeText={setNewPassword}
-                                style={[
-                                    styles.textInput,
-                                    {
-                                        borderColor: colors.border,
-                                        backgroundColor: colors.background,
-                                        color: colors.text,
-                                    },
-                                ]}
+                                style={styles.textInput}
                                 placeholder="Enter new password"
                                 placeholderTextColor={colors.textTertiary}
                                 secureTextEntry
@@ -353,7 +327,6 @@ const Profile = () => {
                         <TouchableOpacity
                             style={[
                                 styles.saveButton,
-                                { backgroundColor: colors.primary },
                                 saving && styles.saveButtonDisabled,
                             ]}
                             onPress={handleSaveChanges}
@@ -370,7 +343,7 @@ const Profile = () => {
 
                 {/* Floating Theme Toggle Button */}
                 <TouchableOpacity
-                    style={[styles.themeButton, { backgroundColor: colors.primary }]}
+                    style={styles.themeButton}
                     onPress={toggleTheme}
                     activeOpacity={0.8}
                 >
@@ -400,6 +373,7 @@ const styles = StyleSheet.create({
         height: 120,
         borderRadius: 60,
         borderWidth: 3,
+        borderColor: ORANGE,
     },
     editImageButton: {
         position: "absolute",
@@ -407,10 +381,11 @@ const styles = StyleSheet.create({
         right: 0,
         borderRadius: 18,
         padding: 6,
+        backgroundColor: ORANGE,
     },
-    editImageIcon: { color: "white", fontSize: 14 },
+    editImageIcon: { color: "#fff", fontSize: 14 },
     profileName: { fontSize: 22, fontWeight: "600", marginTop: 10 },
-    profileJoinDate: { fontSize: 14 },
+    profileJoinDate: { fontSize: 14, color: "#555" },
     formSection: { padding: 20 },
     inputGroup: { marginBottom: 20 },
     inputLabel: { fontSize: 14, fontWeight: "600", marginBottom: 6 },
@@ -419,15 +394,19 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 12,
         fontSize: 16,
+        borderColor: ORANGE,
+        backgroundColor: "#fff",
+        color: "#000",
     },
-    inputHelper: { fontSize: 12, marginTop: 4 },
+    inputHelper: { fontSize: 12, marginTop: 4, color: "#777" },
     buttonSection: { padding: 20 },
     saveButton: {
         paddingVertical: 14,
         borderRadius: 8,
         alignItems: "center",
+        backgroundColor: ORANGE,
     },
-    saveButtonDisabled: { opacity: 0.6 },
+    saveButtonDisabled: { opacity: 0.7 },
     saveButtonText: { color: "#fff", fontSize: 16, fontWeight: "600" },
     themeButton: {
         position: "absolute",
@@ -435,6 +414,7 @@ const styles = StyleSheet.create({
         right: 20,
         padding: 16,
         borderRadius: 28,
+        backgroundColor: ORANGE,
         elevation: 8,
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 4 },

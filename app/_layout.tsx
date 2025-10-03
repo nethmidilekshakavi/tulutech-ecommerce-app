@@ -1,15 +1,22 @@
 import React from "react";
 import { Slot } from "expo-router";
-import { AuthProvider } from "@/context/AuthContext";
-import { CartProvider } from "@/context/CartContext";
+import { AuthProvider } from "@/context/AuthContext"
+import { LoaderProvider } from "@/context/LoaderContext"
+import { ThemeProvider } from "@/context/ThemeContext"
+import {CartProvider} from "@/context/CartContext";
+
 
 const RootLayout = () => {
     return (
-        <AuthProvider>
+        <LoaderProvider>
             <CartProvider>
-                <Slot />
-            </CartProvider>
-        </AuthProvider>
+            <AuthProvider>
+                <ThemeProvider>
+                        <Slot />
+                </ThemeProvider>
+            </AuthProvider>
+                </CartProvider>
+        </LoaderProvider>
     );
 };
 
