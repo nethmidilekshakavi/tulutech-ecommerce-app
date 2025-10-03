@@ -53,7 +53,6 @@ const HomeScreen = () => {
                 getDoc(userRef)
                     .then(snapshot => {
                         if (snapshot.exists()) {
-                            // @ts-ignore
                             setCurrentUser({ uid: snapshot.id, ...(snapshot.data() as UserDoc) });
                         }
                     })
@@ -157,10 +156,10 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     stickyHeader: { backgroundColor: "#FF6B35", paddingBottom: 15, paddingTop: 10, zIndex: 10 },
     userSection: { flexDirection: "row", alignItems: "center", paddingHorizontal: 15, marginBottom: 10 },
-    profilePic: { width: 50, height: 50, borderRadius: 25, marginRight: 10 },
-    greeting: { color: "#fff", fontWeight: "bold" },
-    subGreeting: { color: "#fff", fontSize: 12 },
-    searchContainer: { backgroundColor: "#fff", borderRadius: 10, marginHorizontal: 15, padding: 5, marginBottom: 10 },
+    profilePic: { width: 50, height: 50, borderRadius: 25, marginRight: 10,top:10 },
+    greeting: { color: "#fff", fontWeight: "bold",top:10 ,fontSize: 20 },
+    subGreeting: { color: "#fff", fontSize: 12 ,top:10 },
+    searchContainer: { backgroundColor: "#fff", borderRadius: 10, marginHorizontal: 15, padding: 5, marginBottom: 10,top:10 },
     searchInput: { height: 35, paddingHorizontal: 10 },
     categoriesScroll: { paddingHorizontal: 15 },
     categoryCircle: { alignItems: "center", marginRight: 15 },

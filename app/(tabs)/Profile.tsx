@@ -359,7 +359,7 @@ const Profile = () => {
 };
 
 const styles = StyleSheet.create({
-    container: { flex: 1 },
+    container: { flex: 1 ,},
     loadingContainer: { flex: 1, justifyContent: "center", alignItems: "center" },
     loadingText: { marginTop: 12, fontSize: 16 },
     profileSection: {
@@ -367,7 +367,7 @@ const styles = StyleSheet.create({
         paddingVertical: 30,
         marginBottom: 10,
     },
-    profileImageContainer: { position: "relative", marginBottom: 12 },
+    profileImageContainer: { position: "relative", marginBottom: 12,top:20 },
     profileImage: {
         width: 120,
         height: 120,
@@ -384,8 +384,8 @@ const styles = StyleSheet.create({
         backgroundColor: ORANGE,
     },
     editImageIcon: { color: "#fff", fontSize: 14 },
-    profileName: { fontSize: 22, fontWeight: "600", marginTop: 10 },
-    profileJoinDate: { fontSize: 14, color: "#555" },
+    profileName: { fontSize: 22, fontWeight: "600", marginTop: 10,top:10 },
+    profileJoinDate: { fontSize: 14, color: "#555",top:10 },
     formSection: { padding: 20 },
     inputGroup: { marginBottom: 20 },
     inputLabel: { fontSize: 14, fontWeight: "600", marginBottom: 6 },

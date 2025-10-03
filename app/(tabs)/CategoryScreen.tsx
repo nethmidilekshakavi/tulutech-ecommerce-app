@@ -36,14 +36,12 @@ const CategoryScreen = () => {
 
     // Categories with emojis - matching API categories
     const categories = [
-        { name: "All", emoji: "🛍️" },
-        { name: "beauty", emoji: "💄", displayName: "Beauty" },
-        { name: "fragrances", emoji: "🌸", displayName: "Fragrances" },
-        { name: "furniture", emoji: "🛋️", displayName: "Furniture" },
-        { name: "groceries", emoji: "🥬", displayName: "Groceries" },
+        { name: "All", image: { uri: "https://i.pinimg.com/736x/4b/b0/23/4bb02380050856eb5246d3b2a7264a03.jpg" }, displayName: "All" },
+        { name: "beauty", image: { uri: "https://i.pinimg.com/736x/6c/46/8e/6c468ec21c5ef5c990b450829f02aadf.jpg" }, displayName: "Beauty" },
+        { name: "fragrances", image: { uri: "https://i.pinimg.com/1200x/ec/a7/b1/eca7b1e2e89a6101565d2c0a4d6bbba3.jpg" }, displayName: "Fragrances" },
+        { name: "furniture", image: { uri: "https://i.pinimg.com/1200x/cc/53/20/cc5320060ae359dd97eff9427b37374f.jpg" }, displayName: "Furniture" },
+        { name: "groceries", image: { uri: "https://i.pinimg.com/736x/e2/5d/a4/e25da4c25502689e6ebc3200f55df728.jpg" }, displayName: "Groceries" },
     ];
-
-
 
     // Fetch products
     const fetchProducts = async () => {
@@ -100,6 +98,7 @@ const CategoryScreen = () => {
                         <Text style={styles.seeAllBtn}>See All</Text>
                     </TouchableOpacity>
                 </View>
+
                 <ScrollView
                     horizontal
                     showsHorizontalScrollIndicator={false}
@@ -112,24 +111,34 @@ const CategoryScreen = () => {
                                 styles.categoryCircle,
                                 selectedCategory === category.name && styles.categoryCircleActive
                             ]}
-                            onPress={() => setSelectedCategory(category.name === "All" ? null : category.name)}
+                            onPress={() =>
+                                setSelectedCategory(category.name === "All" ? null : category.name)
+                            }
                         >
-                            <View style={[
-                                styles.categoryIconContainer,
-                                selectedCategory === category.name && styles.categoryIconActive
-                            ]}>
-                                <Text style={styles.categoryEmoji}>{category.emoji}</Text>
+                            <View
+                                style={[
+                                    selectedCategory === category.name && styles.categoryIconActive
+                                ]}
+                            >
+                                <Image
+                                    source={category.image}  // 🔹 Replace Text with Image
+                                    style={{ width: 70, height: 70, borderRadius: 20 }}
+                                    resizeMode="cover"
+                                />
                             </View>
-                            <Text style={[
-                                styles.categoryName,
-                                selectedCategory === category.name && styles.categoryNameActive
-                            ]}>
+                            <Text
+                                style={[
+                                    styles.categoryName,
+                                    selectedCategory === category.name && styles.categoryNameActive
+                                ]}
+                            >
                                 {category.displayName || category.name}
                             </Text>
                         </TouchableOpacity>
                     ))}
                 </ScrollView>
             </View>
+
 
 
 
@@ -233,20 +242,7 @@ const styles = StyleSheet.create({
     categoriesScroll: { paddingHorizontal: 15, paddingBottom: 10 },
     categoryCircle: { alignItems: 'center', marginRight: 20 },
     categoryCircleActive: { transform: [{ scale: 1.05 }] },
-    categoryIconContainer: {
-        width: 70,
-        height: 70,
-        borderRadius: 35,
-        backgroundColor: '#FFF5F2',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 8,
-        elevation: 2,
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-    },
+
     categoryIconActive: {
         backgroundColor: '#FF6B35',
     },
