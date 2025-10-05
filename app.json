@@ -8,13 +8,11 @@
     "scheme": "tulutechecommerceapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
-
     "splash": {
       "image": "./assets/images/tulutech-logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-
     "ios": {
       "supportsTablet": true
     },
@@ -26,7 +24,7 @@
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictitiveBackGestureEnabled": false,
+      "predictiveBackGestureEnabled": false,
       "package": "com.ndk2003.tulutechecommerceapp"
     },
     "web": {
@@ -46,8 +44,9 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "3123c399-b53a-4996-adba-6b02866240de"
+        "projectId": "dd645628-1582-44a1-972f-3c656e5388d8"
       }
-    }
+    },
+    "owner": "nethu0311"
   }
 }

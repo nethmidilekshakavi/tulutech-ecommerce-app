@@ -73,7 +73,9 @@ const UsersList = () => {
             q,
             (snapshot) => {
 
+
                 const usersList: UserDoc[] = snapshot.docs.map((doc) => ({
+                    // @ts-ignore
                     uid: doc.id,
                     ...(doc.data() as UserDoc),
                 }));
@@ -282,6 +284,7 @@ const UsersList = () => {
                                         </TouchableOpacity>
                                         <TouchableOpacity
                                             style={styles.deleteIcon}
+                                            // @ts-ignore
                                             onPress={() => handleDelete(item.uid, item.fullName || "User")}
                                         >
                                             <Text style={styles.actionIcon}>🗑️</Text>

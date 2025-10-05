@@ -11,6 +11,7 @@ import {
     Animated,
     Alert
 } from "react-native";
+// @ts-ignore
 import { CartContext, CartItem } from "@/context/CartContext";
 import { Ionicons } from "@expo/vector-icons";
 
